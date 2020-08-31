@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30309.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopDuplication", "DesktopDuplication\DesktopDuplication.csproj", "{222C215B-663F-4BD6-9B3E-8FA99C867B22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenHueSync", "ScreenHueSync\ScreenHueSync.csproj", "{B76B8DCB-8752-46F0-A44B-1F23645906EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{222C215B-663F-4BD6-9B3E-8FA99C867B22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{222C215B-663F-4BD6-9B3E-8FA99C867B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{222C215B-663F-4BD6-9B3E-8FA99C867B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{222C215B-663F-4BD6-9B3E-8FA99C867B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B76B8DCB-8752-46F0-A44B-1F23645906EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B76B8DCB-8752-46F0-A44B-1F23645906EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B76B8DCB-8752-46F0-A44B-1F23645906EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B76B8DCB-8752-46F0-A44B-1F23645906EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F5B9E48D-5D53-4336-8D2C-ECF37470D141}
+	EndGlobalSection
+EndGlobal
