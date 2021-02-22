@@ -1,6 +1,4 @@
 ﻿using DesktopDuplication;
-using Emgu.CV;
-using Emgu.CV.Structure;
 using Q42.HueApi.ColorConverters;
 using Q42.HueApi.Streaming.Extensions;
 using Q42.HueApi.Streaming.Models;
@@ -8,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -159,14 +158,24 @@ namespace ScreenHueSync
                     }
 
                     timer.Start();
-                    var frame = screen.GetLatestFrame();
-                    if (frame != null)
+                    try
                     {
-                        var image = frame.DesktopImage.ToImage<Bgr, byte>();
-                        image = image.Resize(32, 32, Emgu.CV.CvEnum.Inter.Linear);
-                        lights.SetState(ct, DominantColor(image), LightIntensity);
-                        refreshTimeCallback?.Invoke(timer.ElapsedMilliseconds);
-                        timer.Reset();
+                        var frame = screen.GetLatestFrame();
+                        if (frame?.DesktopImage != null)
+                        {
+                            using (var image = new Bitmap(frame.DesktopImage, new System.Drawing.Size(32, 32)))
+                            {
+                                var color = DominantColor(image);
+                                lights.SetState(ct, color, LightIntensity);
+                            }
+                            refreshTimeCallback?.Invoke(timer.ElapsedMilliseconds);
+                            timer.Reset();
+                        }
+                    }
+                    catch(DesktopDuplicationException)
+                    {
+                        screen.Destroy();
+                        screen = new DesktopDuplicator(screen.OutputDeviceIndex);
                     }
                 }
             }
@@ -176,7 +185,7 @@ namespace ScreenHueSync
             }
         }
 
-        private static RGBColor DominantColor(Image<Bgr, byte> image)
+        private static RGBColor DominantColor(Bitmap image)
         {
             int r = 0, g = 0, b = 0;
             var total = 0;
@@ -185,10 +194,10 @@ namespace ScreenHueSync
             {
                 for (var j = 0; j < image.Height; j++)
                 {
-                    b += image.Data[j, i, 0];
-                    g += image.Data[j, i, 1];
-                    r += image.Data[j, i, 2];
-
+                    var pixel = image.GetPixel(i, j);
+                    b += pixel.B;
+                    g += pixel.G;
+                    r += pixel.R;
                     total++;
                 }
             }

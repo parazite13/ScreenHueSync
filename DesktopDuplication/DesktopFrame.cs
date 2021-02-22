@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace DesktopDuplication
 {
@@ -43,6 +39,8 @@ namespace DesktopDuplication
         /// </summary>
         public Point CursorLocation { get; internal set; }
 
+        public Size CursorSize { get; internal set; }
+
         /// <summary>
         /// Gets whether the cursor on the last retrieved desktop image was visible.
         /// </summary>
@@ -57,5 +55,7 @@ namespace DesktopDuplication
         /// Gets whether the operating system accumulated updates by coalescing updated regions. If so, the updated regions might contain unmodified pixels.
         /// </summary>
         public bool RectanglesCoalesced { get; internal set; }
+
+        public Cursor CursorIcon { get; internal set; }
     }
 }
